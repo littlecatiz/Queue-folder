@@ -195,15 +195,37 @@
                 const loadYmlData = async () => {
                 const loadYmlData = async () => {
                 const loadYmlData = async () => {
-           try {
-                const response = await fetch('/data/queues.yml?t=' + Date.now());
-                const text = await response.text();
-                const parsed = jsyaml.load(text);
-                tickets.value = parsed.queues || [];
-           } catch (e) {
-                console.error('Error fetching YML:', e);
-           }
-      };
+           const loadYmlData = async () => {
+    try {
+        // 1. เติม ?t= กัน Cache ฝังลึกบนมือถือ
+        const response = await fetch('/data/queues.yml?t=' + Date.now());
+        const text = await response.text();
+        const parsed = jsyaml.load(text);
+        
+        if (parsed && parsed.queues) {
+            // 2. แปลงค่า progress และ id ให้เป็นประเภทข้อมูลที่ถูกต้องแน่นอน
+            const formattedQueues = parsed.queues.map(item => ({
+                ...item,
+                id: String(item.id),
+                progress: Number(item.progress) || 0
+            }));
+
+            // 3. ยัดค่ากลับเข้า Vue reactive variable
+            tickets.value = formattedQueues;
+
+            // 4. บังคับให้ Vue วาดหน้าจอใหม่ทันที
+            nextTick(() => {
+                if (currentPage.value === 2) {
+                    generateBarcodes();
+                }
+                lucide.createIcons();
+            });
+        }
+    } catch (e) {
+        console.error('Error fetching YML:', e);
+    }
+};
+
 
 
                 const getStatusName = (prog) => {
