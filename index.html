@@ -194,15 +194,15 @@
 
                 const loadYmlData = async () => {
                 const loadYmlData = async () => {
-    try {
-        const response = await fetch('/data/queues.yml?v=' + new Date().getTime());
-        const text = await response.text();
-        const parsed = jsyaml.load(text);
-        tickets.value = parsed.queues || [];
-    } catch (e) {
-        console.error('Error fetching YML:', e);
-    }
-};
+                try {
+                const response = await fetch('/data/queues.yml?v=' + new Date().getTime());
+                const text = await response.text();
+                const parsed = jsyaml.load(text);
+                tickets.value = parsed.queues || [];
+                } catch (e) {
+                console.error('Error fetching YML:', e);
+                }
+            };
 
 
                 const getStatusName = (prog) => {
