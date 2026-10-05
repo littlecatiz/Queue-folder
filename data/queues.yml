@@ -6,7 +6,7 @@ queues:
     date: 04/10/2026
   - id: "2"
     queueNumber: Q-002
-    customerName: mr.ppor
+    customerName: mr.por
     progress: 60
     date: 04/10/2026
   - id: "3"
