@@ -1,21 +1,21 @@
 queues:
   - id: "1"
-    queueNumber: "Q-001"
-    customerName: "คุณสมชาย"
-    progress: 60
-    date: "04/10/2026"
-  - id: "2"
-    queueNumber: "Q-002"
-    customerName: "คุณอารียา"
+    queueNumber: Q-001
+    customerName: ms.kitty
     progress: 20
-    date: "04/10/2026"
+    date: 04/10/2026
+  - id: "2"
+    queueNumber: Q-002
+    customerName: mr.ppor
+    progress: 60
+    date: 04/10/2026
   - id: "3"
-    queueNumber: "Q-003"
-    customerName: "คุณกิตติ"
-    progress: 100
-    date: "03/10/2026"
+    queueNumber: Q-003
+    customerName: ms.calite
+    progress: 80
+    date: 03/10/2026
   - id: "4"
-    queueNumber: "Q-004"
-    customerName: "คุณนภา"
-    progress: 40
-    date: "04/10/2026"
+    queueNumber: Q-004
+    customerName: ms.zara
+    progress: 100
+    date: 04/10/2026
