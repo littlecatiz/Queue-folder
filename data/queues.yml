@@ -7,7 +7,7 @@ queues:
   - id: "2"
     queueNumber: Q-002
     customerName: mr.por
-    progress: 60
+    progress: 40
     date: 04/10/2026
   - id: "3"
     queueNumber: Q-003
