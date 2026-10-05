@@ -200,7 +200,7 @@
                 const text = await response.text();
                 const parsed = jsyaml.load(text);
                 tickets.value = parsed.queues || [];
-               } catch (e) {
+             } catch (e) {
                 console.error('Error fetching YML:', e);
              }
          };
