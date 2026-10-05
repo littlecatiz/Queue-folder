@@ -88,37 +88,38 @@
             will-change: transform, opacity, filter;
         }
         .ticket-item.is-focused { transform: scale(1); opacity: 1; filter: blur(0px); }
-        .ticket-item.is-unfocused { transform: scale(0.88); opacity: 0.35; filter: blur(1px); }
+        .ticket-item.is-unfocused { transform: scale(0.92); opacity: 0.4; filter: blur(1px); }
     </style>
 </head>
 <body class="bg-cream text-[#4A3E3D] font-sans min-h-screen flex flex-col justify-center items-center overflow-x-hidden p-4 select-none">
 
-    <!-- Container ปรับขนาดให้เต็ม 85%-90% ของหน้าจอมือถือ -->
-    <div id="app" class="w-full max-w-[380px] sm:max-w-md md:max-w-lg min-h-screen flex flex-col justify-center items-center relative folder-perspective">
+    <!-- ขยาย Container หลัก จาก max-w-[380px] เป็น max-w-md (มือถือ) และ max-w-xl (แท็บเล็ต/คอม) -->
+    <div id="app" class="w-full max-w-md md:max-w-xl min-h-screen flex flex-col justify-center items-center relative folder-perspective">
         
-        <!-- ปุ่ม Admin Panel -->
+        <!-- ปุ่ม Admin Panel (ขยายขนาดตัวหนังสือและ padding) -->
         <div class="fixed top-4 left-4 z-50">
-            <a href="/admin/" class="bg-coffee/80 hover:bg-coffee text-cocoa font-medium px-4 py-2 rounded-full text-xs sm:text-sm flex items-center gap-1.5 transition border border-white/80 backdrop-blur-md shadow-md">
-                <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+            <a href="/admin/" class="bg-coffee/80 hover:bg-coffee text-cocoa font-medium px-5 py-2.5 rounded-full text-sm sm:text-base flex items-center gap-2 transition border border-white/80 backdrop-blur-md shadow-md">
+                <i data-lucide="lock" class="w-4 h-4"></i>
                 <span>Admin Panel</span>
             </a>
         </div>
 
-        <!-- PAGE 1: หน้าปกแฟ้ม (ปรับขนาดใช้ % ของ Container ขยายใหญ่เต็มตาแน่นอน) -->
+        <!-- PAGE 1: หน้าปกแฟ้ม (ปรับขนาด max-w จาก 320px เป็น 480px และขยายตัวหนังสือ) -->
         <transition name="folder-flip">
-            <div v-if="currentPage === 1" class="folder-cover absolute w-[85%] aspect-[3/4] max-w-[320px] bg-folder rounded-3xl shadow-2xl p-6 flex flex-col justify-between items-center border border-white/80 z-20">
-                <button @click="goToPage(2)" class="absolute -right-3 top-10 bg-folderTab hover:bg-cocoa text-cream font-medium px-4 py-2 rounded-r-xl shadow-lg transform hover:translate-x-0.5 transition flex items-center gap-1 text-xs sm:text-sm border-l border-white/30 cursor-pointer z-30">
+            <div v-if="currentPage === 1" class="folder-cover absolute w-full max-w-[480px] aspect-[3/4] bg-folder rounded-3xl shadow-2xl p-8 flex flex-col justify-between items-center border border-white/80 z-20">
+                <button @click="goToPage(2)" class="absolute -right-4 top-12 bg-folderTab hover:bg-cocoa text-cream font-medium px-5 py-2.5 rounded-r-2xl shadow-lg transform hover:translate-x-1 transition flex items-center gap-1.5 text-sm sm:text-base border-l border-white/30 cursor-pointer z-30">
                     <span class="font-serif italic">Next Page</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
                 </button>
 
-                <i data-lucide="sparkles" class="absolute top-8 left-8 text-cream/80 w-5 h-5"></i>
-                <i data-lucide="star" class="absolute top-20 left-12 text-cream/60 w-3 h-3"></i>
-                <i data-lucide="sparkle" class="absolute bottom-10 right-10 text-cream/70 w-4 h-4"></i>
+                <i data-lucide="sparkles" class="absolute top-10 left-10 text-cream/80 w-7 h-7"></i>
+                <i data-lucide="star" class="absolute top-24 left-16 text-cream/60 w-4 h-4"></i>
+                <i data-lucide="sparkle" class="absolute bottom-12 right-12 text-cream/70 w-5 h-5"></i>
 
                 <div class="my-auto text-center transform -rotate-6">
-                    <h1 class="font-signature text-6xl sm:text-7xl text-cocoa drop-shadow-sm leading-tight">Queue Folder</h1>
-                    <p class="font-serif italic text-xs sm:text-sm text-cocoa/80 mt-2">Click Next Page to open</p>
+                    <!-- ขยาย Font Header หน้าปก -->
+                    <h1 class="font-signature text-7xl sm:text-8xl text-cocoa drop-shadow-sm leading-tight">Queue Folder</h1>
+                    <p class="font-serif italic text-base sm:text-lg text-cocoa/80 mt-4">Click Next Page to open</p>
                 </div>
             </div>
         </transition>
@@ -126,49 +127,55 @@
         <!-- PAGE 2: หน้าตั๋วคิว -->
         <transition name="folder-flip">
             <div v-if="currentPage === 2" class="folder-inside w-full flex flex-col items-center py-4 relative z-10">
-                <div class="w-full mb-3 flex justify-between items-center px-2">
-                    <button @click="goToPage(1)" class="bg-coffee/60 hover:bg-coffee text-cocoa px-3.5 py-1.5 rounded-full text-xs sm:text-sm flex items-center gap-1.5 transition border border-white/60 cursor-pointer shadow-sm">
-                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                <div class="w-full mb-4 flex justify-between items-center px-2">
+                    <button @click="goToPage(1)" class="bg-coffee/60 hover:bg-coffee text-cocoa px-4 py-2 rounded-full text-sm sm:text-base flex items-center gap-2 transition border border-white/60 cursor-pointer shadow-sm">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
                         <span class="font-serif italic">Back to Cover</span>
                     </button>
                 </div>
 
-                <div ref="scrollContainer" @scroll="handleScroll" class="w-full h-[500px] sm:h-[560px] overflow-y-auto no-scrollbar py-28 space-y-6 scroll-smooth">
-                    <div v-for="(ticket, index) in tickets" :key="ticket.id" :data-index="index" :class="['ticket-item relative mx-auto w-[96%]', getFocusClass(index)]">
-                        <div class="bg-[#F8F6F2] border border-coffee rounded-2xl shadow-lg flex overflow-hidden relative p-1">
-                            <div class="flex-1 p-4 border-r border-dashed border-cocoa/40 flex flex-col justify-between">
+                <!-- เพิ่มความสูงกล่อง Scroll จาก 500px/560px เป็น 600px/680px -->
+                <div ref="scrollContainer" @scroll="handleScroll" class="w-full h-[600px] sm:h-[680px] overflow-y-auto no-scrollbar py-28 space-y-6 scroll-smooth">
+                    <div v-for="(ticket, index) in tickets" :key="ticket.id" :data-index="index" :class="['ticket-item relative mx-auto w-full', getFocusClass(index)]">
+                        <!-- ปรับ padding ตั๋วให้ใหญ่ขึ้น -->
+                        <div class="bg-[#F8F6F2] border-2 border-coffee rounded-2xl shadow-xl flex overflow-hidden relative p-2">
+                            <div class="flex-1 p-5 border-r border-dashed border-cocoa/40 flex flex-col justify-between">
                                 <div>
-                                    <div class="flex justify-between items-center text-xs text-cocoa mb-1">
+                                    <div class="flex justify-between items-center text-sm text-cocoa mb-2">
                                         <span class="font-serif italic">Queue Ticket</span>
                                         <span>{{ ticket.date }}</span>
                                     </div>
-                                    <div class="text-2xl sm:text-3xl font-bold text-[#5C4D4D] leading-tight mb-1">{{ ticket.queueNumber }}</div>
-                                    <div class="text-sm font-medium text-cocoa truncate">ลูกค้า: {{ ticket.customerName }}</div>
+                                    <!-- ขยายเลขคิวให้อ่านชัดเจน -->
+                                    <div class="text-3xl sm:text-4xl font-bold text-[#5C4D4D] leading-tight mb-2">{{ ticket.queueNumber }}</div>
+                                    <div class="text-base sm:text-lg font-medium text-cocoa truncate">ลูกค้า: {{ ticket.customerName }}</div>
                                 </div>
 
-                                <div class="mt-3">
-                                    <div class="flex justify-between text-xs font-medium text-cocoa mb-1">
+                                <div class="mt-4">
+                                    <div class="flex justify-between text-xs sm:text-sm font-medium text-cocoa mb-1.5">
                                         <span>{{ getStatusName(ticket.progress) }}</span>
                                         <span>{{ ticket.progress }}%</span>
                                     </div>
-                                    <div class="w-full bg-coffee/30 h-3 rounded-full overflow-hidden flex items-center p-0.5 relative">
-                                        <span class="text-cocoa animate-heartbeat absolute left-0.5 z-10 text-[10px]">🤎</span>
+                                    <!-- เพิ่มความสูง Progress Bar -->
+                                    <div class="w-full bg-coffee/30 h-4 rounded-full overflow-hidden flex items-center p-0.5 relative">
+                                        <span class="text-cocoa animate-heartbeat absolute left-1 z-10 text-xs">🤎</span>
                                         <div class="h-full bg-cocoa rounded-full transition-all duration-300 progress-striped pl-2" :style="{ width: ticket.progress + '%' }"></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="w-20 bg-coffee/15 flex items-center justify-center relative overflow-hidden rounded-r-xl">
+                            <!-- ขยายความกว้างส่วน Barcode ด้านขวา -->
+                            <div class="w-24 sm:w-28 bg-coffee/15 flex items-center justify-center relative overflow-hidden rounded-r-xl">
                                 <div class="transform -rotate-90 whitespace-nowrap flex items-center justify-center">
-                                    <svg :id="'barcode-' + ticket.id" class="max-h-10 w-28"></svg>
+                                    <svg :id="'barcode-' + ticket.id" class="max-h-12 w-32"></svg>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="fixed bottom-5 bg-cocoa/90 text-cream px-6 py-2 rounded-full shadow-xl border border-white/30 text-xs sm:text-sm backdrop-blur-md z-30">
-                    ขณะนี้มีรายการทั้งหมด <span class="font-bold text-coffee">{{ tickets.length }}</span> คิว
+                <!-- ขยายขนาดกล่องบอกจำนวนคิวด้านล่าง -->
+                <div class="fixed bottom-6 bg-cocoa/90 text-cream px-7 py-2.5 rounded-full shadow-2xl border border-white/30 text-sm sm:text-base backdrop-blur-md z-30">
+                    ขณะนี้มีรายการทั้งหมด <span class="font-bold text-coffee text-lg">{{ tickets.length }}</span> คิว
                 </div>
             </div>
         </transition>
@@ -211,7 +218,7 @@
                             JsBarcode(`#barcode-${t.id}`, t.queueNumber, {
                                 format: "CODE128",
                                 displayValue: false,
-                                height: 30,
+                                height: 40,
                                 margin: 0
                             });
                         } catch(e){}
